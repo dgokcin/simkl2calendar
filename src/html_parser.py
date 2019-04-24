@@ -36,8 +36,10 @@ class HTMLParser():
     def get_tv_show_data(self, page):
         soup = BeautifulSoup(page.content, 'html.parser')
         month = soup.find_all('td', class_='SimklTVCalendarColumn')
-        for day in month:
-            episodes = day.find(class_="openLogin")
+        for d in month:
+            tv_shows = d.find_all(class_='SimklTVCalendarDayListLink')
+            for t in tv_shows:
+                print (t.get_text())
 
 
 
