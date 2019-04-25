@@ -3,10 +3,11 @@ from bs4 import BeautifulSoup
 import requests
 
 class CalendarDate():
-    def __init__(self, day, month, year):
+    def __init__(self, day, month, year, str_day):
         self.day = day
         self.month = month
         self.year = year
+        self.str_day = str_day
         self.today = []
 
 class TVShow():
@@ -20,28 +21,44 @@ class HTMLParser():
 
     calendar = OrderedDict()
     calendar = {
-                #"01-2019": "january.html",
-                #"02-2019": "february.html",
-                #"03-2019": "march.html",
-                "04-2019": "april.html"
-                #"05-2019": "may.html",
-                #"06-2019": "june.html",
-                #"07-2019": "july.html",
-                #"08-2019": "august.html",
-                #"09-2019": "september.html",
-                #"10-2019": "october.html",
-                #"11-2019": "november.html",
-                #"12-2019": "december.html"
+                "01-2019": "january.html",
+                "02-2019": "february.html",
+                "03-2019": "march.html",
+                "04-2019": "april.html",
+                "05-2019": "may.html",
+                "06-2019": "june.html",
+                "07-2019": "july.html",
+                "08-2019": "august.html",
+                "09-2019": "september.html",
+                "10-2019": "october.html",
+                "11-2019": "november.html",
+                "12-2019": "december.html"
                 }
     def get_tv_show_data(self, page):
         soup = BeautifulSoup(page.content, 'html.parser')
-        month = soup.find_all('td', class_='SimklTVCalendarColumn')
-        for d in month:
-            tv_shows = d.find_all(class_='SimklTVCalendarDayListLink')
-            for t in tv_shows:
-                print (t.get_text())
+        cal_item = soup.find_all('td', class_='SimklTVCalendarColumn')
+        for i in cal_item:
+            date = str(i.find('table', class_='SimklTVCalendarDayTitle', title=True)['title'])
 
+            str_day = date.split()[0]
+            month = date.split()[1].split('/')[0]
+            day = date.split()[1].split('/')[1]
+            year = date.split()[1].split('/')[2]
 
+            tmp = CalendarDate(day, month, year, str_day)
+
+            tv_shows = i.find_all(class_='SimklTVCalendarWatching')
+            if len(tv_shows) == 0:
+                continue
+            else:
+                for t in tv_shows:
+                    show_name = str(t.find_all(class_='SimklTVCalendarDayListLink')[0].get_text())
+                    season = str(t.find_all(class_='SimklTVCalendarDayListLink')[1].get_text().split()[1])
+                    episode = str(t.find_all(class_='SimklTVCalendarDayListLink')[1].get_text().split()[4])
+
+                    s = TVShow(show_name, season, episode)
+                    tmp.today.append(s)
+            print (str(tmp.day) + " " + str(tmp.month) + " " + str(tmp.year) + " " + str_day + " is parsed successfully")
 
     def get_html(self):
         link = "https://simkl.com/tv/calendar"
@@ -50,8 +67,6 @@ class HTMLParser():
         for key, value in HTMLParser.calendar.iteritems():
             page = requests.get(link + "/" + key + "/" + str(calendar_id), "html/" + value)
             self.get_tv_show_data(page)
-
-
 
 def main():
     exporter = HTMLParser()
