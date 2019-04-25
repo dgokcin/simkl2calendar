@@ -19,21 +19,10 @@ class TVShow():
 
 class HTMLParser():
 
-    calendar = OrderedDict()
-    calendar = {
-                "01-2019": "january.html",
-                "02-2019": "february.html",
-                "03-2019": "march.html",
-                "04-2019": "april.html",
-                "05-2019": "may.html",
-                "06-2019": "june.html",
-                "07-2019": "july.html",
-                "08-2019": "august.html",
-                "09-2019": "september.html",
-                "10-2019": "october.html",
-                "11-2019": "november.html",
-                "12-2019": "december.html"
-                }
+    calendar = ["01-2019", "02-2019", "03-2019", "04-2019",
+                "05-2019", "06-2019", "07-2019", "08-2019",
+                "09-2019", "10-2019", "11-2019", "12-2019"]
+
     def get_tv_show_data(self, page):
         soup = BeautifulSoup(page.content, 'html.parser')
         cal_item = soup.find_all('td', class_='SimklTVCalendarColumn')
@@ -58,22 +47,28 @@ class HTMLParser():
 
                     s = TVShow(show_name, season, episode)
                     tmp.today.append(s)
-            print (str(tmp.day) + " " + str(tmp.month) + " " + str(tmp.year) + " " + str_day + " is parsed successfully")
+
+            self.print_calendar(tmp)
+
+    def print_calendar(self, day):
+        print (str(day.day) + "-" + str(day.month) + "-" + str(day.year) + " " + day.str_day)
+        for s in day.today:
+            print s.title
+            print "S:" + s.season + " E:" + s.episode
+            print "\n"
 
     def get_html(self):
         link = "https://simkl.com/tv/calendar"
         calendar_id = "1437817"
 
-        for key, value in HTMLParser.calendar.iteritems():
-            page = requests.get(link + "/" + key + "/" + str(calendar_id), "html/" + value)
+        for month in HTMLParser.calendar:
+            page = requests.get(link + "/" + month + "/" + str(calendar_id))
             self.get_tv_show_data(page)
+
 
 def main():
     exporter = HTMLParser()
     exporter.get_html()
-
-
-
 
 if __name__ == "__main__":
     main()
