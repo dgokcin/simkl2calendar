@@ -11,13 +11,17 @@ class CalendarDate():
         self.today = []
 
 class TVShow():
-    def __init__(self, title, season, episode):
+    def __init__(self, title, season, episode, est_time):
         self.title = title
         self.season = season
         self.episode = episode
+        self.est_time = est_time
 
 
 class HTMLParser():
+    def __init__(self):
+        self.link = "https://simkl.com"
+        self.calendar_id = "1437817"
 
     calendar = ["01-2019", "02-2019", "03-2019", "04-2019",
                 "05-2019", "06-2019", "07-2019", "08-2019",
@@ -34,7 +38,7 @@ class HTMLParser():
             day = date.split()[1].split('/')[1]
             year = date.split()[1].split('/')[2]
 
-            tmp = CalendarDate(day, month, year, str_day)
+            calendar_day = CalendarDate(day, month, year, str_day)
 
             tv_shows = i.find_all(class_='SimklTVCalendarWatching')
             if len(tv_shows) == 0:
@@ -44,25 +48,41 @@ class HTMLParser():
                     show_name = str(t.find_all(class_='SimklTVCalendarDayListLink')[0].get_text())
                     season = str(t.find_all(class_='SimklTVCalendarDayListLink')[1].get_text().split()[1])
                     episode = str(t.find_all(class_='SimklTVCalendarDayListLink')[1].get_text().split()[4])
+                    show_id = str(t.find_all(class_='SimklTVCalendarDayListLink')[0].find('a')['href'])
+                    fixed_time = self.get_time(show_id)
 
-                    s = TVShow(show_name, season, episode)
-                    tmp.today.append(s)
+                    s = TVShow(show_name, season, episode, fixed_time)
+                    calendar_day.today.append(s)
 
-            self.print_calendar(tmp)
+            self.print_calendar(calendar_day)
+
+    def get_time(self, show_id):
+        show_page = requests.get(self.link + str(show_id))
+        show_page_soup = BeautifulSoup(show_page.content, 'html.parser')
+        try:
+            est_time_hour = int(show_page_soup.find('td', class_='SimklTVAboutYearCountry').get_text().split()[5].split(':')[0])
+            est_time_minute = str(show_page_soup.find('td', class_='SimklTVAboutYearCountry').get_text().split()[5].split(':')[1])
+        except ValueError:
+            est_time_hour = 21
+            est_time_minute = "00"
+
+        am_pm = show_page_soup.find('td', class_='SimklTVAboutYearCountry').get_text().split()[6]
+        if am_pm == 'PM':
+            est_time_hour += 12
+        return str(est_time_hour) + ':' + str(est_time_minute)
 
     def print_calendar(self, day):
         print (str(day.day) + "-" + str(day.month) + "-" + str(day.year) + " " + day.str_day)
         for s in day.today:
             print s.title
+            print s.est_time
             print "S:" + s.season + " E:" + s.episode
             print "\n"
 
     def get_html(self):
-        link = "https://simkl.com/tv/calendar"
-        calendar_id = "1437817"
 
         for month in HTMLParser.calendar:
-            page = requests.get(link + "/" + month + "/" + str(calendar_id))
+            page = requests.get(self.link + "/tv/calendar/" + month + "/" + str(self.calendar_id))
             self.get_tv_show_data(page)
 
 
