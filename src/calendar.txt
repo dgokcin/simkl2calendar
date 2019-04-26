@@ -1,371 +1,377 @@
 09-01-2019 Wednesday
 Modern Family
+21:00
 S:10 E:11
 
 
 10-01-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:01
 
 
 The Good Place
+21:30
 S:03 E:10
 
 
 16-01-2019 Wednesday
 Modern Family
+21:00
 S:10 E:12
 
 
 17-01-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:02
 
 
 How to Get Away with Murder
+22:00
 S:05 E:09
 
 
 The Good Place
+21:30
 S:03 E:11
 
 
 23-01-2019 Wednesday
 Suits
+22:00
 S:08 E:11
 
 
 Modern Family
+21:00
 S:10 E:13
 
 
 24-01-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:03
 
 
 How to Get Away with Murder
+22:00
 S:05 E:10
 
 
 The Good Place
+21:30
 S:03 E:12
 
 
 30-01-2019 Wednesday
 Suits
+22:00
 S:08 E:12
 
 
 Modern Family
+21:00
 S:10 E:14
 
 
 31-01-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:04
 
 
 How to Get Away with Murder
+22:00
 S:05 E:11
 
 
 30-01-2019 Wednesday
 Suits
+22:00
 S:08 E:12
 
 
 Modern Family
+21:00
 S:10 E:14
 
 
 31-01-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:04
 
 
 How to Get Away with Murder
+22:00
 S:05 E:11
 
 
 06-02-2019 Wednesday
 Suits
+22:00
 S:08 E:13
 
 
 07-02-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:05
 
 
 How to Get Away with Murder
+22:00
 S:05 E:12
 
 
 08-02-2019 Friday
 The Epic Tales of Captain Underpants
+21:00
 S:02 E:01
 
 
 13-02-2019 Wednesday
 Suits
+22:00
 S:08 E:14
 
 
 14-02-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:06
 
 
 How to Get Away with Murder
+22:00
 S:05 E:13
 
 
 20-02-2019 Wednesday
 Suits
+22:00
 S:08 E:15
 
 
 Modern Family
+21:00
 S:10 E:15
 
 
 21-02-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:07
 
 
 How to Get Away with Murder
+22:00
 S:05 E:14
 
 
 27-02-2019 Wednesday
 Suits
+22:00
 S:08 E:16
 
 
 Modern Family
+21:00
 S:10 E:16
 
 
 28-02-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:08
 
 
 How to Get Away with Murder
+22:00
 S:05 E:15
 
 
 27-02-2019 Wednesday
 Suits
+22:00
 S:08 E:16
 
 
 Modern Family
+21:00
 S:10 E:16
 
 
 28-02-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:08
 
 
 How to Get Away with Murder
+22:00
 S:05 E:15
 
 
 07-03-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:09
 
 
 13-03-2019 Wednesday
 Modern Family
+21:00
 S:10 E:17
 
 
 14-03-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:10
 
 
 15-03-2019 Friday
 Arrested Development
+21:00
 S:05 E:13
 
 
 20-03-2019 Wednesday
 Modern Family
+21:00
 S:10 E:18
 
 
 21-03-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:11
-
-
-27-03-2019 Wednesday
-Happy!
-S:02 E:01
 
 
 03-04-2019 Wednesday
 Modern Family
+21:00
 S:10 E:19
-
-
-Happy!
-S:02 E:02
 
 
 10-04-2019 Wednesday
 Modern Family
+21:00
 S:10 E:20
-
-
-Happy!
-S:02 E:03
 
 
 11-04-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:12
-
-
-17-04-2019 Wednesday
-Happy!
-S:02 E:04
 
 
 18-04-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:13
-
-
-21-04-2019 Sunday
-Game of Thrones
-S:08 E:02
-
-
-24-04-2019 Wednesday
-Happy!
-S:02 E:05
 
 
 25-04-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:14
 
 
 28-04-2019 Sunday
 Game of Thrones
+21:00
 S:08 E:03
 
 
 01-05-2019 Wednesday
 Modern Family
+21:00
 S:10 E:21
-
-
-Happy!
-S:02 E:06
 
 
 02-05-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:15
 
 
 05-05-2019 Sunday
 Game of Thrones
+21:00
 S:08 E:04
 
 
 01-05-2019 Wednesday
 Modern Family
+21:00
 S:10 E:21
-
-
-Happy!
-S:02 E:06
 
 
 02-05-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:15
 
 
 05-05-2019 Sunday
 Game of Thrones
+21:00
 S:08 E:04
 
 
 08-05-2019 Wednesday
 Modern Family
+21:00
 S:10 E:22
 
 
-Happy!
-S:02 E:07
-
-
 Lucifer
-S:04 E:08
+12:00
+S:04 E:07
 
 
 09-05-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:16
 
 
 12-05-2019 Sunday
 Game of Thrones
+21:00
 S:08 E:05
-
-
-15-05-2019 Wednesday
-Happy!
-S:02 E:08
 
 
 16-05-2019 Thursday
 Brooklyn Nine-Nine
+21:00
 S:06 E:17
 
 
 19-05-2019 Sunday
 Game of Thrones
+21:00
 S:08 E:06
-
-
-22-05-2019 Wednesday
-Happy!
-S:02 E:09
-
-
-29-05-2019 Wednesday
-Happy!
-S:02 E:10
-
-
-29-05-2019 Wednesday
-Happy!
-S:02 E:10
 
 
 07-06-2019 Friday
 Designated Survivor
-S:03 E:01
+3:00
+S:03 E:10
 
 
 04-07-2019 Thursday
 Stranger Things
+3:00
 S:03 E:05
 
 
 19-07-2019 Friday
 Money Heist
+22:45
 S:02 E:01
 
 
