@@ -5,6 +5,7 @@ import datetime
 from datetime import timedelta
 import pickle
 import os.path
+from pytz import timezone
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -62,12 +63,14 @@ class HTMLParser():
                     fixed_time = self.get_time(show_id)
                     end_time = str((int(fixed_time.split(':')[0]) + 1) % 24)
 
-                    datetime_object_start = datetime.datetime(int(year), int(month), int(day),
-                                                        int(fixed_time.split(':')[0]), int(fixed_time.split(':')[1]))
-                    datetime_object_end = datetime_object_start + timedelta(hours=1)
+                    start_datetime = datetime.datetime(int(year), int(month), int(day),
+                                                        int(fixed_time.split(':')[0]), int(fixed_time.split(':')[1]),
+                                                       tzinfo=timezone('America/New_York'))
+                    ##  Because of the weird Time Zone System in Turkey
+                    end_datetime = start_datetime + timedelta(hours=1)
 
-                    datetime_object_start_str = datetime_object_start.strftime("%Y-%m-%dT%H:%M:%S-01:00")
-                    datetime_object_end_str = datetime_object_end.strftime("%Y-%m-%dT%H:%M:%S-01:00")
+                    datetime_object_start_str = start_datetime.isoformat()
+                    datetime_object_end_str = end_datetime.isoformat()
 
                     s = TVShow(show_name, season, episode, fixed_time)
                     self.k = {
@@ -102,11 +105,11 @@ class HTMLParser():
                         'description': 'S: ' + season + 'E: ' + episode,
                         'start': {
                             'dateTime': datetime_object_start_str,
-                            'timeZone': 'America/Los_Angeles',
+                            'timeZone': 'America/New_York',
                         },
                         'end': {
                             'dateTime': datetime_object_end_str,
-                            'timeZone': 'America/Los_Angeles',
+                            'timeZone': 'America/New_York',
                         }
                     }
 
@@ -176,9 +179,10 @@ class HTMLParser():
             start = event['start'].get('dateTime', event['start'].get('date'))
             print(start, event['summary'])
 
-        for evnt in all_events:
-            if evnt not in events:
-                add_event = service.events().insert(calendarId='primary', body=evnt).execute()
+        for google_e in all_events:
+            if google_e not in events:
+                add_event = service.events().insert(calendarId='primary', body=google_e).execute()
+                events.append(google_e)
             else:
                 print('pas geciyom')
 
