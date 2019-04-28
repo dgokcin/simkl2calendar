@@ -37,8 +37,7 @@ def main():
     # Call the Calendar API
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
     print('Getting the upcoming 10 events')
-    events_result = service.events().list(calendarId='primary', timeMin=now,
-                                        maxResults=10, singleEvents=True,
+    events_result = service.events().list(calendarId='primary', timeMin=now, singleEvents=True,
                                         orderBy='startTime').execute()
     events = events_result.get('items', [])
 
@@ -77,8 +76,15 @@ def main():
         },
     }
 
-    event = service.events().insert(calendarId='primary', body=event).execute()
-    print ('Event created: %s' % (event.get('htmlLink')))
+    events.append(event)
+
+    for e in events:
+        if e == event:
+            print('pasgeciyom')
+            pass
+        else:
+            add_event = service.events().insert(calendarId='primary', body=event).execute()
+            print ('Event created: %s' % (event.get('htmlLink')))
 
 if __name__ == '__main__':
     main()
