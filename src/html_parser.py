@@ -31,6 +31,7 @@ class HTMLParser():
         self.link = "https://simkl.com"
         self.calendar_id = "1437817"
         self.all_events = []
+        self.all_events_summary = []
         self.k = ""
 
     calendar = ["01-2019", "02-2019", "03-2019", "04-2019",
@@ -67,6 +68,7 @@ class HTMLParser():
                                                         int(fixed_time.split(':')[0]), int(fixed_time.split(':')[1]),
                                                        tzinfo=timezone('America/New_York'))
                     ##  Because of the weird Time Zone System in Turkey
+                    start_datetime = start_datetime + timedelta(hours=-1)
                     end_datetime = start_datetime + timedelta(hours=1)
 
                     datetime_object_start_str = start_datetime.isoformat()
@@ -101,8 +103,7 @@ class HTMLParser():
                         },
                     }
                     event = {
-                        'summary': show_name,
-                        'description': 'S: ' + season + 'E: ' + episode,
+                        'summary': show_name + ' S: ' + season + 'E: ' + episode,
                         'start': {
                             'dateTime': datetime_object_start_str,
                             'timeZone': 'America/New_York',
@@ -114,6 +115,7 @@ class HTMLParser():
                     }
 
                     self.all_events.append(event)
+                    self.all_events_summary.append(event['summary'])
 
         self.add_2_calendar(self.all_events)
 
@@ -169,20 +171,21 @@ class HTMLParser():
         # Call the Calendar API
         now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         print('Getting the upcoming 10 events')
-        events_result = service.events().list(calendarId='primary', timeMin=now, singleEvents=True,
+        events_result = service.events().list(calendarId='primary', singleEvents=True,
                                               orderBy='startTime').execute()
+        event_sum = []
         events = events_result.get('items', [])
-
+        for k in events:
+            try:
+                event_sum.append(str(k['summary']))
+            except Exception:
+                event_sum.append("problematic text")
         if not events:
             print('No upcoming events found.')
-        for event in events:
-            start = event['start'].get('dateTime', event['start'].get('date'))
-            print(start, event['summary'])
 
         for google_e in all_events:
-            if google_e not in events:
+            if google_e['summary'] not in event_sum:
                 add_event = service.events().insert(calendarId='primary', body=google_e).execute()
-                events.append(google_e)
             else:
                 print('pas geciyom')
 
