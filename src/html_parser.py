@@ -34,8 +34,11 @@ class HTMLParser():
         self.all_events_summary = []
         self.k = ""
 
-    calendar = ["01-2019", "02-2019", "03-2019", "04-2019",
-                "05-2019", "06-2019", "07-2019", "08-2019",
+    #calendar = ["01-2019", "02-2019", "03-2019", "04-2019",
+    #           "05-2019", "06-2019", "07-2019", "08-2019",
+    #          "09-2019", "10-2019", "11-2019", "12-2019"]
+
+    calendar = ["05-2019", "06-2019", "07-2019", "08-2019",
                 "09-2019", "10-2019", "11-2019", "12-2019"]
 
 
@@ -170,7 +173,7 @@ class HTMLParser():
 
         # Call the Calendar API
         now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
-        print('Getting the upcoming 10 events')
+        print('Getting events from calendar.')
         events_result = service.events().list(calendarId='primary', singleEvents=True,
                                               orderBy='startTime').execute()
         event_sum = []
@@ -183,11 +186,13 @@ class HTMLParser():
         if not events:
             print('No upcoming events found.')
 
+        print('There are ' + str(len(all_events)) + ' events to add.')
         for google_e in all_events:
             if google_e['summary'] not in event_sum:
                 add_event = service.events().insert(calendarId='primary', body=google_e).execute()
+                event_sum.append(google_e['summary'])
             else:
-                print('pas geciyom')
+                print('Duplicate, passing')
 
     def get_html(self):
 
