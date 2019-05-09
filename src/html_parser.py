@@ -94,7 +94,6 @@ class HTMLParser():
                     self.all_events.append(event)
                     self.all_events_summary.append(event['summary'])
 
-        self.add_2_calendar(self.all_events)
 
     def get_time(self, show_id):
         show_page = requests.get(self.link + str(show_id))
@@ -173,6 +172,7 @@ class HTMLParser():
         for month in HTMLParser.calendar:
             page = requests.get(self.link + "/tv/calendar/" + month + "/" + str(self.calendar_id))
             self.get_tv_show_data(page)
+        self.add_2_calendar(self.all_events)
 
 
 def main():
