@@ -53,7 +53,6 @@ class HTMLParser():
             day = date.split()[1].split('/')[1]
             year = date.split()[1].split('/')[2]
 
-            calendar_day = CalendarDate(day, month, year, str_day)
 
             tv_shows = i.find_all(class_='SimklTVCalendarWatching')
             if len(tv_shows) == 0:
@@ -147,7 +146,7 @@ class HTMLParser():
         # Call the Calendar API
         now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
         print('Getting events from calendar.')
-        events_result = service.events().list(calendarId='primary', singleEvents=True,
+        events_result = service.events().list(calendarId='primary', timeMin=now, singleEvents=True,
                                               orderBy='startTime').execute()
         event_sum = []
         events = events_result.get('items', [])
@@ -163,7 +162,6 @@ class HTMLParser():
         for google_e in all_events:
             if google_e['summary'] not in event_sum:
                 add_event = service.events().insert(calendarId='primary', body=google_e).execute()
-                event_sum.append(google_e['summary'])
             else:
                 print('Duplicate, passing')
 
