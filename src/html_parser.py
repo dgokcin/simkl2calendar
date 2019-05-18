@@ -164,7 +164,7 @@ class HTMLParser():
             if google_e['summary'] not in event_sum:
                 add_event = service.events().insert(calendarId='primary', body=google_e).execute()
             else:
-                print('Duplicate, passing')
+                print('Duplicate, passing: ' + google_e['summary'])
 
     def get_html(self):
 
