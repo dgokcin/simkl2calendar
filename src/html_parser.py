@@ -40,7 +40,7 @@ class HTMLParser():
 
     calendar = ["06-2019", "07-2019", "08-2019",
                 "09-2019", "10-2019", "11-2019",
-                "12-2019"]
+                "12-2019", "01-2020", "02-2020"]
 
 
     def get_tv_show_data(self, page):
@@ -163,6 +163,7 @@ class HTMLParser():
         for google_e in all_events:
             if google_e['summary'] not in event_sum:
                 add_event = service.events().insert(calendarId='primary', body=google_e).execute()
+                print('Adding ' + google_e['summary'] + ' to Google calendar...')
             else:
                 print('Duplicate, passing: ' + google_e['summary'])
 
